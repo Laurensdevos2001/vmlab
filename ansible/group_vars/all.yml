@@ -1,0 +1,19 @@
+# group_vars/all.yml
+# Variables visible to all nodes
+---
+rhbase_repositories:
+  - epel-release
+rhbase_install_packages:
+  - bash-completion
+  - vim-enhanced
+  - bind-utils
+  - git
+  - nano
+  - tree
+  - wget
+rhbase_users:
+  - name: laurens
+    groups:
+      - wheel
+    password: "$1$JN5I5bjT$wt9BtxaOQ4H2fWVn05Mpk0"
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDOzo276VitNb5pgo+FSYAz0luvUF3I3OKA24wcpVPytZdV+S8Fprpv/yfqrTwHNXTojtGtg+uxSV8uSmmEvyk8DAdsIU8aDH1WiLC5+96GwMI+DTsucsN16AraZyeHzWAnQ7JDY95SapkB6JJ3POyicKvO+DQusbxUgZwT0lDbDj5eiWh2AbBDWaq7YAYA+N5INZe+RAxDogbhEetAFZ5IRpuHyjKQVRQyPtnvlRaj6LnNOBzWntTknjeHiuwpdFyie5CCUbuz4DFDJYo5CAtt8Cke89LXvHag/TJcUD0QsvgL+fSNDTfzhoXK8NDta5DRt4JJiIKe6+ycxLv1TIYp0o1QewgS9DPmHOHrBe2kFsHvPeGUEu5Kl6ubvi8xM607sfoIDb3WlLJAF8/K2dwh3TkK9J6rP9De5Jq8koitKPektqf6DKNgDz3CBEg/K0J3ci9EG+UwUt1QRiwSmAIoK4XLzvzMRQUBwybkyWm0JAL0TJyZwALFGFw6O+4BOIE= laure@laptop-laurens"

@@ -1,0 +1,55 @@
+# site.yml
+---
+- hosts: all
+  tasks:
+    - name: Install pip
+      become: yes
+      package:
+        name: python3-pip
+        state: present
+      tags:
+        - pip_installation
+
+    - name: Install paramiko
+      pip:
+        name: paramiko
+        executable: pip3
+      tags:
+        - pip_installation
+
+    - name: Install jmespath
+      pip:
+        name: jmespath
+        executable: pip3
+      tags:
+        - pip_installation
+  roles:
+    - bertvv.rh-base
+    - cloudalchemy.node-exporter
+- hosts: srv010
+  vars:
+    pip_install_packages:
+      - name: paramiko
+      - name: ansible-pylibssh
+  roles:
+    - role: geerlingguy.mysql
+      become: yes
+    - bertvv.wordpress
+    - bertvv.httpd
+    - geerlingguy.php
+    - geerlingguy.pip
+- hosts: srv001
+  roles:
+    - bertvv.bind
+- hosts: srv003
+  roles:
+    - bertvv.dhcp
+- hosts: srv004
+  pre_tasks:
+    - name: add DNS server
+      lineinfile:
+        path: /etc/resolv.conf
+        regexp: "^(.*)nameserver(.*)$"
+        line: "nameserver 172.16.128.2"
+  roles:
+    - cloudalchemy.prometheus

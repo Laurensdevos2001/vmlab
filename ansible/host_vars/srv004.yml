@@ -1,0 +1,13 @@
+prometheus_scrape_jobs:
+  - job_name: "prometheus" # Custom scrape job, here using static_config
+    metrics_path: "/metrics"
+    static_configs:
+      - targets:
+          - "localhost:9090"
+  - job_name: "nodes"
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - srv010.infra.lan:9100
+          - srv001.infra.lan:9100
+          - srv003.infra.lan:9100

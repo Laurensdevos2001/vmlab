@@ -1,0 +1,39 @@
+---
+rhbase_firewall_allow_services:
+  - dns
+
+bind_allow_query: ["any"]
+bind_listen_ipv4: ["any"]
+bind_recursion: true
+bind_allow_recursion: ["any"]
+bind_forward_only: true
+bind_forwarders: [10.0.2.3, 1.1.1.1]
+bind_dnssec_enable: false
+bind_dnssec_validation: false
+
+bind_zones:
+  - name: infra.lan
+    type: primary
+    primaries:
+      - 172.16.128.2
+    name_servers:
+      - srv001
+    networks:
+      - "172.16"
+    hosts:
+      - name: r001
+        ip: 172.16.255.254
+        aliases:
+          - gw
+      - name: srv001
+        ip: 172.16.128.2
+        aliases:
+          - ns
+      - name: srv003
+        ip: 172.16.128.3
+        aliases:
+          - dhcp
+      - name: "@"
+        ip: 172.16.128.10
+        aliases:
+          - www

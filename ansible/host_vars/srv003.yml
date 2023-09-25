@@ -1,0 +1,16 @@
+---
+rhbase_firewall_allow_services:
+  - dhcp
+
+dhcp_subnets:
+  - ip: 172.16.0.0
+    netmask: 255.255.0.0
+    range_begin: 172.16.0.2
+    range_end: 172.16.127.254
+    default_lease_time: 14400 # 4 uur
+    domain_name_servers: 10.0.2.3
+    routers: 172.16.255.254
+dhcp_hosts:
+  - name: mint
+    mac: "08:00:27:9e:62:ea"
+    ip: 172.16.150.3
